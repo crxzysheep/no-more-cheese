@@ -4,12 +4,12 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpPower;
-    [SerializeField] private float jumpCutoff;
+    [SerializeField] private float jumpIncrease;
     [SerializeField] private float jumpBuffer;
     private Rigidbody2D body;
 
 
-    [SerializeField] private Transform groundCheck;
+    [SerializeField] private BoxCollider2D groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
     public void Awake()
@@ -29,21 +29,17 @@ public class PlayerMovement : MonoBehaviour
 
         if(Input.GetButtonUp("Jump") && body.linearVelocity.y > 0f)
         {
-            body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y * jumpCutoff);
+            body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y * jumpIncrease);
         }
     }
 
     private bool isGrounded()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, jumpBuffer, groundLayer);
+        return Physics2D.OverlapAreaAll(groundCheck.bounds.min, groundCheck.bounds.max, groundLayer).Length > 0;
     }
 
     private void jump()
     {
         body.linearVelocity = new Vector2(body.linearVelocity.x, jumpPower);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
     }
 }

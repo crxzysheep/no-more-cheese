@@ -20,17 +20,27 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        body.linearVelocity = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, body.linearVelocity.y);
+        float horizonalInput = Input.GetAxis("Horizontal");
 
-        if(Input.GetButtonDown("Jump") && isGrounded())
+        // movement
+        body.linearVelocity = new Vector2(horizonalInput* moveSpeed, body.linearVelocity.y);
+
+        if(Input.GetKeyDown(KeyCode.UpArrow) && isGrounded())
         {
             jump();
         }
 
-        if(Input.GetButtonUp("Jump") && body.linearVelocity.y > 0f)
+        if(Input.GetKeyUp(KeyCode.UpArrow) && body.linearVelocity.y > 0f)
         {
             body.linearVelocity = new Vector2(body.linearVelocity.x, body.linearVelocity.y * jumpIncrease);
         }
+
+        //animations
+        if (horizonalInput > 0.01f)
+            transform.localScale = Vector3.one;
+        else if (horizonalInput < -0.01f)
+            transform.localScale = new Vector3(-1, 1, 1);
+
     }
 
     private bool isGrounded()

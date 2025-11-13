@@ -9,6 +9,7 @@ public class NPC : MonoBehaviour, IInteractable
     public GameObject dialoguePanel;
     public TMP_Text dialogueText, nameText;
     public Image portraitImage;
+    public GameObject interactionIcon;
 
     private int dialogueIndex;
     private bool isTyping, isDialogueActive;
@@ -20,7 +21,8 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (dialogueData == null || (!isDialogueActive))
+        print("yes?");
+        if (dialogueData == null) // || (!isDialogueActive)
             return;
         if (isDialogueActive)
         {
@@ -37,7 +39,7 @@ public class NPC : MonoBehaviour, IInteractable
         isDialogueActive = true;
         dialogueIndex = 0;
 
-        nameText.SetText(dialogueData.name);
+        nameText.SetText(dialogueData.npcName);
         portraitImage.sprite = dialogueData.npcPortrait;
 
         dialoguePanel.SetActive(true);
@@ -91,4 +93,8 @@ public class NPC : MonoBehaviour, IInteractable
         }
     }
 
+    public void showInteractionIcon(bool toggle)
+    {
+        interactionIcon.SetActive(toggle);
+    }
 }

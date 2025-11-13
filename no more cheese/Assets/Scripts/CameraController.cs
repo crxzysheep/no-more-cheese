@@ -11,8 +11,10 @@ public class CameraController : MonoBehaviour
     // normal follow player camera
     [SerializeField] private Transform player;
     [SerializeField] private float aheadDistance;
+    [SerializeField] private float cameraHeight;
     [SerializeField] private float cameraSpeed;
     private float lookAhead;
+    
 
     private void Update()
     {

@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37686bd7b54c9ca4bb9cdb6b5f6a43c0, type: 3}
   m_Name: testNPC
   m_EditorClassIdentifier: 
-  npcName: 
-  npcPortrait: {fileID: 0}
-  dialogueLines: []
+  npcName: purple
+  npcPortrait: {fileID: 6821343344619960041, guid: 34e8ae942ab012540b4a26dd7dde3e74, type: 3}
+  dialogueLines:
+  - hello
+  - hi
   autoProgressLines: 
   audoProgressDelay: 1.5
-  typingSpeed: 0
+  typingSpeed: 3

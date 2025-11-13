@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour // also all player actions
 {
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumpPower;
@@ -22,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     {
         float horizonalInput = Input.GetAxis("Horizontal");
 
-        // movement
+        // default movement
         body.linearVelocity = new Vector2(horizonalInput* moveSpeed, body.linearVelocity.y);
 
         if(Input.GetKeyDown(KeyCode.UpArrow) && isGrounded())
@@ -40,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
             transform.localScale = Vector3.one;
         else if (horizonalInput < -0.01f)
             transform.localScale = new Vector3(-1, 1, 1);
-
     }
 
     private bool isGrounded()

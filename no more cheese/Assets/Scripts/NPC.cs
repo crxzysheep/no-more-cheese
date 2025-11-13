@@ -21,7 +21,6 @@ public class NPC : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        print("yes?");
         if (dialogueData == null) // || (!isDialogueActive)
             return;
         if (isDialogueActive)
